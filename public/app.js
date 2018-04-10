@@ -43,30 +43,48 @@
  listFood.innerHTML = favFood;
  return listFood;
 }
+// could have done as one, instead of one for food, name etc by passing in label, text - li.innerText = '${label}: ${text}' return li
 
- const createImg = function(photo){
- let listImg = document.createElement("li");
- listImg.innerHTML = "<img width='500' src=photo >";
- return listImg;
+//  const createImg = function(photo){
+//  let listImg = document.createElement("li");
+//  listImg.innerHTML = "<img width='500' src=photo >";
+//  return listImg;
+// }
+
+// alternative way (which works!):
+const createImg = function(url){
+  let listImg = document.createElement('li')
+  let img = document.createElement('img')
+  img.src = url;
+  listImg.appendChild(img)
+  return listImg;
 }
 
-
-const appendElements = function(ul, listName, listFood, listImg){
-  listName.appendChild(listFood);
-  listName.appendChild(listImg);
+// const appendElements = function(ul, listName, listFood, listImg, CatSection){
+//   listName.appendChild(listFood);
+//   listName.appendChild(listImg);
+//   ul.appendChild(listName);
+//   let cats = document.querySelector("#cats");
+//   cats.appendChild(ul);
+//
+// }
+const appendElements = function(ul, listName, listFood, listImg, cats){
   ul.appendChild(listName);
-  let cats = document.querySelector("#cats");
+  ul.appendChild(listFood);
+  ul.appendChild(listImg);
   cats.appendChild(ul);
-
 }
+
+
 
 const addCat = function(name, favFood, photo) {
-  const ul = createCatList();
+  const ul = createCatList('cat');
   const listName = createName(name);
   const listFood = createFavFood(favFood);
   const listImg = createImg(photo);
+  const cats = document.querySelector('#cats')
 
-  appendElements(ul, listName, listFood, listImg);
+  appendElements(ul, listName, listFood, listImg, cats);
 }
 
 
